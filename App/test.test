@@ -1,0 +1,955 @@
+\SergiX44\Nutgram\Telegram\Types\Chat\Chat::__set_state(array(
+   '_bot' =>
+  \SergiX44\Nutgram\Nutgram::__set_state(array(
+     'globalMiddlewares' =>
+    array (
+    ),
+     'target' => 'groupHandlers',
+     'handlers' =>
+    array (
+      'message' =>
+      array (
+        0 =>
+        \SergiX44\Nutgram\Handlers\Handler::__set_state(array(
+           'head' =>
+          \SergiX44\Nutgram\Middleware\Link::__set_state(array(
+             'callable' => NULL,
+             'next' => NULL,
+          )),
+           'pattern' => NULL,
+           'constraints' =>
+          array (
+          ),
+           'parameters' =>
+          array (
+          ),
+           'callable' =>
+          \Closure::__set_state(array(
+          )),
+           'skipGlobalMiddlewares' => false,
+           'skippedGlobalMiddlewares' =>
+          array (
+          ),
+           'tags' =>
+          array (
+          ),
+           'disabled' => false,
+        )),
+      ),
+    ),
+     'groups' =>
+    array (
+    ),
+     'groupHandlers' =>
+    array (
+    ),
+     'finalized' => true,
+     'conversationCache' =>
+    \SergiX44\Nutgram\Cache\ConversationCache::__set_state(array(
+       'cache' =>
+      \SergiX44\Nutgram\Cache\Adapters\ArrayCache::__set_state(array(
+         'cache' =>
+        array (
+        ),
+         'expires' =>
+        array (
+        ),
+      )),
+       'ttl' => 43200,
+       'key' => 'CONVERSATION',
+       'botId' => 6519530193,
+    )),
+     'globalCache' =>
+    \SergiX44\Nutgram\Cache\GlobalCache::__set_state(array(
+       'cache' =>
+      \SergiX44\Nutgram\Cache\Adapters\ArrayCache::__set_state(array(
+         'cache' =>
+        array (
+        ),
+         'expires' =>
+        array (
+        ),
+      )),
+       'ttl' => NULL,
+       'key' => 'GLOBAL',
+       'botId' => 6519530193,
+    )),
+     'userCache' =>
+    \SergiX44\Nutgram\Cache\UserCache::__set_state(array(
+       'cache' =>
+      \SergiX44\Nutgram\Cache\Adapters\ArrayCache::__set_state(array(
+         'cache' =>
+        array (
+        ),
+         'expires' =>
+        array (
+        ),
+      )),
+       'ttl' => NULL,
+       'key' => 'USER',
+       'botId' => 6519530193,
+    )),
+     'update' =>
+    \SergiX44\Nutgram\Telegram\Types\Common\Update::__set_state(array(
+       '_bot' => NULL,
+       'update_id' => 123331161,
+       'message' =>
+      \SergiX44\Nutgram\Telegram\Types\Message\Message::__set_state(array(
+         '_bot' => NULL,
+         'message_id' => 55,
+         'message_thread_id' => 2,
+         'from' =>
+        \SergiX44\Nutgram\Telegram\Types\User\User::__set_state(array(
+           '_bot' => NULL,
+           'id' => 194013811,
+           'is_bot' => false,
+           'first_name' => 'Gleb',
+           'last_name' => 'Vinogradov',
+           'username' => 'glebdivine',
+           'language_code' => 'en',
+           'is_premium' => true,
+           'added_to_attachment_menu' => NULL,
+           'can_join_groups' => NULL,
+           'can_read_all_group_messages' => NULL,
+           'supports_inline_queries' => NULL,
+        )),
+         'sender_chat' => NULL,
+         'date' => 1702357681,
+         'chat' => NULL,
+         'forward_from' => NULL,
+         'forward_from_chat' => NULL,
+         'forward_from_message_id' => NULL,
+         'forward_signature' => NULL,
+         'forward_sender_name' => NULL,
+         'forward_date' => NULL,
+         'is_topic_message' => true,
+         'is_automatic_forward' => NULL,
+         'reply_to_message' =>
+        \SergiX44\Nutgram\Telegram\Types\Message\Message::__set_state(array(
+           '_bot' => NULL,
+           'message_id' => 2,
+           'message_thread_id' => 2,
+           'from' =>
+          \SergiX44\Nutgram\Telegram\Types\User\User::__set_state(array(
+             '_bot' => NULL,
+             'id' => 194013811,
+             'is_bot' => false,
+             'first_name' => 'Gleb',
+             'last_name' => 'Vinogradov',
+             'username' => 'glebdivine',
+             'language_code' => 'en',
+             'is_premium' => true,
+             'added_to_attachment_menu' => NULL,
+             'can_join_groups' => NULL,
+             'can_read_all_group_messages' => NULL,
+             'supports_inline_queries' => NULL,
+          )),
+           'sender_chat' => NULL,
+           'date' => 1702311611,
+           'chat' =>
+          \SergiX44\Nutgram\Telegram\Types\Chat\Chat::__set_state(array(
+             '_bot' => NULL,
+             'id' => -1002090421353,
+             'type' =>
+            \SergiX44\Nutgram\Telegram\Properties\ChatType::SUPERGROUP,
+             'title' => 'Gleb & Наташкин',
+             'username' => NULL,
+             'first_name' => NULL,
+             'last_name' => NULL,
+             'is_forum' => true,
+             'photo' => NULL,
+             'active_usernames' => NULL,
+             'emoji_status_custom_emoji_id' => NULL,
+             'emoji_status_expiration_date' => NULL,
+             'bio' => NULL,
+             'has_private_forwards' => NULL,
+             'has_restricted_voice_and_video_messages' => NULL,
+             'join_to_send_messages' => NULL,
+             'join_by_request' => NULL,
+             'description' => NULL,
+             'invite_link' => NULL,
+             'pinned_message' => NULL,
+             'permissions' => NULL,
+             'slow_mode_delay' => NULL,
+             'message_auto_delete_time' => NULL,
+             'has_aggressive_anti_spam_enabled' => NULL,
+             'has_hidden_members' => NULL,
+             'has_protected_content' => NULL,
+             'sticker_set_name' => NULL,
+             'can_set_sticker_set' => NULL,
+             'linked_chat_id' => NULL,
+             'location' => NULL,
+          )),
+           'forward_from' => NULL,
+           'forward_from_chat' => NULL,
+           'forward_from_message_id' => NULL,
+           'forward_signature' => NULL,
+           'forward_sender_name' => NULL,
+           'forward_date' => NULL,
+           'is_topic_message' => true,
+           'is_automatic_forward' => NULL,
+           'reply_to_message' => NULL,
+           'via_bot' => NULL,
+           'edit_date' => NULL,
+           'has_protected_content' => NULL,
+           'media_group_id' => NULL,
+           'author_signature' => NULL,
+           'text' => NULL,
+           'entities' => NULL,
+           'animation' => NULL,
+           'audio' => NULL,
+           'document' => NULL,
+           'photo' => NULL,
+           'sticker' => NULL,
+           'story' => NULL,
+           'video' => NULL,
+           'video_note' => NULL,
+           'voice' => NULL,
+           'caption' => NULL,
+           'caption_entities' => NULL,
+           'has_media_spoiler' => NULL,
+           'contact' => NULL,
+           'dice' => NULL,
+           'game' => NULL,
+           'poll' => NULL,
+           'venue' => NULL,
+           'location' => NULL,
+           'new_chat_members' => NULL,
+           'left_chat_member' => NULL,
+           'new_chat_title' => NULL,
+           'new_chat_photo' => NULL,
+           'delete_chat_photo' => NULL,
+           'group_chat_created' => NULL,
+           'supergroup_chat_created' => NULL,
+           'channel_chat_created' => NULL,
+           'message_auto_delete_timer_changed' => NULL,
+           'migrate_to_chat_id' => NULL,
+           'migrate_from_chat_id' => NULL,
+           'pinned_message' => NULL,
+           'invoice' => NULL,
+           'successful_payment' => NULL,
+           'user_shared' => NULL,
+           'chat_shared' => NULL,
+           'connected_website' => NULL,
+           'write_access_allowed' => NULL,
+           'passport_data' => NULL,
+           'proximity_alert_triggered' => NULL,
+           'forum_topic_created' =>
+          \SergiX44\Nutgram\Telegram\Types\Forum\ForumTopicCreated::__set_state(array(
+             '_bot' => NULL,
+             'name' => 'Привет',
+             'icon_color' =>
+            \SergiX44\Nutgram\Telegram\Properties\ForumIconColor::RED,
+             'icon_custom_emoji_id' => NULL,
+          )),
+           'forum_topic_edited' => NULL,
+           'forum_topic_closed' => NULL,
+           'forum_topic_reopened' => NULL,
+           'general_forum_topic_hidden' => NULL,
+           'general_forum_topic_unhidden' => NULL,
+           'video_chat_scheduled' => NULL,
+           'video_chat_started' => NULL,
+           'video_chat_ended' => NULL,
+           'video_chat_participants_invited' => NULL,
+           'web_app_data' => NULL,
+           'reply_markup' => NULL,
+        )),
+         'via_bot' => NULL,
+         'edit_date' => NULL,
+         'has_protected_content' => NULL,
+         'media_group_id' => NULL,
+         'author_signature' => NULL,
+         'text' => 'hi',
+         'entities' => NULL,
+         'animation' => NULL,
+         'audio' => NULL,
+         'document' => NULL,
+         'photo' => NULL,
+         'sticker' => NULL,
+         'story' => NULL,
+         'video' => NULL,
+         'video_note' => NULL,
+         'voice' => NULL,
+         'caption' => NULL,
+         'caption_entities' => NULL,
+         'has_media_spoiler' => NULL,
+         'contact' => NULL,
+         'dice' => NULL,
+         'game' => NULL,
+         'poll' => NULL,
+         'venue' => NULL,
+         'location' => NULL,
+         'new_chat_members' => NULL,
+         'left_chat_member' => NULL,
+         'new_chat_title' => NULL,
+         'new_chat_photo' => NULL,
+         'delete_chat_photo' => NULL,
+         'group_chat_created' => NULL,
+         'supergroup_chat_created' => NULL,
+         'channel_chat_created' => NULL,
+         'message_auto_delete_timer_changed' => NULL,
+         'migrate_to_chat_id' => NULL,
+         'migrate_from_chat_id' => NULL,
+         'pinned_message' => NULL,
+         'invoice' => NULL,
+         'successful_payment' => NULL,
+         'user_shared' => NULL,
+         'chat_shared' => NULL,
+         'connected_website' => NULL,
+         'write_access_allowed' => NULL,
+         'passport_data' => NULL,
+         'proximity_alert_triggered' => NULL,
+         'forum_topic_created' => NULL,
+         'forum_topic_edited' => NULL,
+         'forum_topic_closed' => NULL,
+         'forum_topic_reopened' => NULL,
+         'general_forum_topic_hidden' => NULL,
+         'general_forum_topic_unhidden' => NULL,
+         'video_chat_scheduled' => NULL,
+         'video_chat_started' => NULL,
+         'video_chat_ended' => NULL,
+         'video_chat_participants_invited' => NULL,
+         'web_app_data' => NULL,
+         'reply_markup' => NULL,
+      )),
+       'edited_message' => NULL,
+       'channel_post' => NULL,
+       'edited_channel_post' => NULL,
+       'inline_query' => NULL,
+       'chosen_inline_result' => NULL,
+       'callback_query' => NULL,
+       'shipping_query' => NULL,
+       'pre_checkout_query' => NULL,
+       'poll' => NULL,
+       'poll_answer' => NULL,
+       'my_chat_member' => NULL,
+       'chat_member' => NULL,
+       'chat_join_request' => NULL,
+    )),
+     'token' => '6519530193:AAGgkavYD0qaLtfEHZpM1SFuX3yvjIWSH7U',
+     'config' =>
+    \SergiX44\Nutgram\Configuration::__set_state(array(
+       'apiUrl' => 'https://api.telegram.org',
+       'botId' => NULL,
+       'botName' => NULL,
+       'testEnv' => false,
+       'isLocal' => false,
+       'clientTimeout' => 5,
+       'clientOptions' =>
+      array (
+      ),
+       'container' => NULL,
+       'hydrator' => 'SergiX44\\Nutgram\\Hydrator\\NutgramHydrator',
+       'cache' => 'SergiX44\\Nutgram\\Cache\\Adapters\\ArrayCache',
+       'logger' => 'Psr\\Log\\NullLogger',
+       'localPathTransformer' => NULL,
+       'pollingTimeout' => 10,
+       'pollingAllowedUpdates' =>
+      array (
+        0 => 'message',
+        1 => 'edited_message',
+        2 => 'channel_post',
+        3 => 'edited_channel_post',
+        4 => 'inline_query',
+        5 => 'chosen_inline_result',
+        6 => 'callback_query',
+        7 => 'shipping_query',
+        8 => 'pre_checkout_query',
+        9 => 'poll',
+        10 => 'poll_answer',
+        11 => 'my_chat_member',
+        12 => 'chat_member',
+        13 => 'chat_join_request',
+      ),
+       'pollingLimit' => 100,
+       'enableHttp2' => true,
+       'extra' =>
+      array (
+      ),
+    )),
+     'http' =>
+    \GuzzleHttp\Client::__set_state(array(
+       'config' =>
+      array (
+        'base_uri' =>
+        \GuzzleHttp\Psr7\Uri::__set_state(array(
+           'scheme' => 'https',
+           'userInfo' => '',
+           'host' => 'api.telegram.org',
+           'port' => NULL,
+           'path' => '/bot6519530193:AAGgkavYD0qaLtfEHZpM1SFuX3yvjIWSH7U/',
+           'query' => '',
+           'fragment' => '',
+           'composedComponents' => NULL,
+        )),
+        'timeout' => 5,
+        'version' => '2.0',
+        'handler' =>
+        \GuzzleHttp\HandlerStack::__set_state(array(
+           'handler' =>
+          \Closure::__set_state(array(
+          )),
+           'stack' =>
+          array (
+            0 =>
+            array (
+              0 =>
+              \Closure::__set_state(array(
+              )),
+              1 => 'http_errors',
+            ),
+            1 =>
+            array (
+              0 =>
+              \Closure::__set_state(array(
+              )),
+              1 => 'allow_redirects',
+            ),
+            2 =>
+            array (
+              0 =>
+              \Closure::__set_state(array(
+              )),
+              1 => 'cookies',
+            ),
+            3 =>
+            array (
+              0 =>
+              \Closure::__set_state(array(
+              )),
+              1 => 'prepare_body',
+            ),
+          ),
+           'cached' =>
+          \Closure::__set_state(array(
+          )),
+        )),
+        'allow_redirects' =>
+        array (
+          'max' => 5,
+          'protocols' =>
+          array (
+            0 => 'http',
+            1 => 'https',
+          ),
+          'strict' => false,
+          'referer' => false,
+          'track_redirects' => false,
+        ),
+        'http_errors' => true,
+        'decode_content' => true,
+        'verify' => true,
+        'cookies' => false,
+        'idn_conversion' => false,
+        'headers' =>
+        array (
+          'User-Agent' => 'GuzzleHttp/7',
+        ),
+      ),
+    )),
+     'hydrator' =>
+    \SergiX44\Nutgram\Hydrator\NutgramHydrator::__set_state(array(
+       'mapper' =>
+      \SergiX44\Hydrator\Hydrator::__set_state(array(
+         'container' =>
+        \SergiX44\Container\Container::__set_state(array(
+           'definitions' =>
+          array (
+            'Psr\\Container\\ContainerInterface' =>
+            \SergiX44\Container\Definition::__set_state(array(
+               'shared' => false,
+               'id' => 'Psr\\Container\\ContainerInterface',
+               'resolver' => NULL,
+               'instance' => NULL,
+            )),
+            'Psr\\Http\\Client\\ClientInterface' =>
+            \SergiX44\Container\Definition::__set_state(array(
+               'shared' => false,
+               'id' => 'Psr\\Http\\Client\\ClientInterface',
+               'resolver' => NULL,
+               'instance' =>
+              \GuzzleHttp\Client::__set_state(array(
+                 'config' =>
+                array (
+                  'base_uri' =>
+                  \GuzzleHttp\Psr7\Uri::__set_state(array(
+                     'scheme' => 'https',
+                     'userInfo' => '',
+                     'host' => 'api.telegram.org',
+                     'port' => NULL,
+                     'path' => '/bot6519530193:AAGgkavYD0qaLtfEHZpM1SFuX3yvjIWSH7U/',
+                     'query' => '',
+                     'fragment' => '',
+                     'composedComponents' => NULL,
+                  )),
+                  'timeout' => 5,
+                  'version' => '2.0',
+                  'handler' =>
+                  \GuzzleHttp\HandlerStack::__set_state(array(
+                     'handler' =>
+                    \Closure::__set_state(array(
+                    )),
+                     'stack' =>
+                    array (
+                      0 =>
+                      array (
+                        0 =>
+                        \Closure::__set_state(array(
+                        )),
+                        1 => 'http_errors',
+                      ),
+                      1 =>
+                      array (
+                        0 =>
+                        \Closure::__set_state(array(
+                        )),
+                        1 => 'allow_redirects',
+                      ),
+                      2 =>
+                      array (
+                        0 =>
+                        \Closure::__set_state(array(
+                        )),
+                        1 => 'cookies',
+                      ),
+                      3 =>
+                      array (
+                        0 =>
+                        \Closure::__set_state(array(
+                        )),
+                        1 => 'prepare_body',
+                      ),
+                    ),
+                     'cached' =>
+                    \Closure::__set_state(array(
+                    )),
+                  )),
+                  'allow_redirects' =>
+                  array (
+                    'max' => 5,
+                    'protocols' =>
+                    array (
+                      0 => 'http',
+                      1 => 'https',
+                    ),
+                    'strict' => false,
+                    'referer' => false,
+                    'track_redirects' => false,
+                  ),
+                  'http_errors' => true,
+                  'decode_content' => true,
+                  'verify' => true,
+                  'cookies' => false,
+                  'idn_conversion' => false,
+                  'headers' =>
+                  array (
+                    'User-Agent' => 'GuzzleHttp/7',
+                  ),
+                ),
+              )),
+            )),
+            'SergiX44\\Nutgram\\Hydrator\\Hydrator' =>
+            \SergiX44\Container\Definition::__set_state(array(
+               'shared' => true,
+               'id' => 'SergiX44\\Nutgram\\Hydrator\\Hydrator',
+               'resolver' => 'SergiX44\\Nutgram\\Hydrator\\NutgramHydrator',
+               'instance' => NULL,
+            )),
+            'Psr\\SimpleCache\\CacheInterface' =>
+            \SergiX44\Container\Definition::__set_state(array(
+               'shared' => true,
+               'id' => 'Psr\\SimpleCache\\CacheInterface',
+               'resolver' => 'SergiX44\\Nutgram\\Cache\\Adapters\\ArrayCache',
+               'instance' =>
+              \SergiX44\Nutgram\Cache\Adapters\ArrayCache::__set_state(array(
+                 'cache' =>
+                array (
+                ),
+                 'expires' =>
+                array (
+                ),
+              )),
+            )),
+            'Psr\\Log\\LoggerInterface' =>
+            \SergiX44\Container\Definition::__set_state(array(
+               'shared' => true,
+               'id' => 'Psr\\Log\\LoggerInterface',
+               'resolver' => 'Psr\\Log\\NullLogger',
+               'instance' =>
+              \Psr\Log\NullLogger::__set_state(array(
+              )),
+            )),
+            'SergiX44\\Nutgram\\Cache\\ConversationCache' =>
+            \SergiX44\Container\Definition::__set_state(array(
+               'shared' => true,
+               'id' => 'SergiX44\\Nutgram\\Cache\\ConversationCache',
+               'resolver' =>
+              \Closure::__set_state(array(
+              )),
+               'instance' =>
+              \SergiX44\Nutgram\Cache\ConversationCache::__set_state(array(
+                 'cache' =>
+                \SergiX44\Nutgram\Cache\Adapters\ArrayCache::__set_state(array(
+                   'cache' =>
+                  array (
+                  ),
+                   'expires' =>
+                  array (
+                  ),
+                )),
+                 'ttl' => 43200,
+                 'key' => 'CONVERSATION',
+                 'botId' => 6519530193,
+              )),
+            )),
+            'SergiX44\\Nutgram\\Cache\\GlobalCache' =>
+            \SergiX44\Container\Definition::__set_state(array(
+               'shared' => true,
+               'id' => 'SergiX44\\Nutgram\\Cache\\GlobalCache',
+               'resolver' =>
+              \Closure::__set_state(array(
+              )),
+               'instance' =>
+              \SergiX44\Nutgram\Cache\GlobalCache::__set_state(array(
+                 'cache' =>
+                \SergiX44\Nutgram\Cache\Adapters\ArrayCache::__set_state(array(
+                   'cache' =>
+                  array (
+                  ),
+                   'expires' =>
+                  array (
+                  ),
+                )),
+                 'ttl' => NULL,
+                 'key' => 'GLOBAL',
+                 'botId' => 6519530193,
+              )),
+            )),
+            'SergiX44\\Nutgram\\Cache\\UserCache' =>
+            \SergiX44\Container\Definition::__set_state(array(
+               'shared' => true,
+               'id' => 'SergiX44\\Nutgram\\Cache\\UserCache',
+               'resolver' =>
+              \Closure::__set_state(array(
+              )),
+               'instance' =>
+              \SergiX44\Nutgram\Cache\UserCache::__set_state(array(
+                 'cache' =>
+                \SergiX44\Nutgram\Cache\Adapters\ArrayCache::__set_state(array(
+                   'cache' =>
+                  array (
+                  ),
+                   'expires' =>
+                  array (
+                  ),
+                )),
+                 'ttl' => NULL,
+                 'key' => 'USER',
+                 'botId' => 6519530193,
+              )),
+            )),
+            'SergiX44\\Nutgram\\RunningMode\\RunningMode' =>
+            \SergiX44\Container\Definition::__set_state(array(
+               'shared' => false,
+               'id' => 'SergiX44\\Nutgram\\RunningMode\\RunningMode',
+               'resolver' => 'SergiX44\\Nutgram\\RunningMode\\Polling',
+               'instance' => NULL,
+            )),
+            'SergiX44\\Nutgram\\Nutgram' =>
+            \SergiX44\Container\Definition::__set_state(array(
+               'shared' => false,
+               'id' => 'SergiX44\\Nutgram\\Nutgram',
+               'resolver' => NULL,
+               'instance' => NULL,
+            )),
+          ),
+           'delegate' => NULL,
+        )),
+      )),
+    )),
+     'logger' =>
+    \Psr\Log\NullLogger::__set_state(array(
+    )),
+     'container' =>
+    \SergiX44\Container\Container::__set_state(array(
+       'definitions' =>
+      array (
+        'Psr\\Container\\ContainerInterface' =>
+        \SergiX44\Container\Definition::__set_state(array(
+           'shared' => false,
+           'id' => 'Psr\\Container\\ContainerInterface',
+           'resolver' => NULL,
+           'instance' => NULL,
+        )),
+        'Psr\\Http\\Client\\ClientInterface' =>
+        \SergiX44\Container\Definition::__set_state(array(
+           'shared' => false,
+           'id' => 'Psr\\Http\\Client\\ClientInterface',
+           'resolver' => NULL,
+           'instance' =>
+          \GuzzleHttp\Client::__set_state(array(
+             'config' =>
+            array (
+              'base_uri' =>
+              \GuzzleHttp\Psr7\Uri::__set_state(array(
+                 'scheme' => 'https',
+                 'userInfo' => '',
+                 'host' => 'api.telegram.org',
+                 'port' => NULL,
+                 'path' => '/bot6519530193:AAGgkavYD0qaLtfEHZpM1SFuX3yvjIWSH7U/',
+                 'query' => '',
+                 'fragment' => '',
+                 'composedComponents' => NULL,
+              )),
+              'timeout' => 5,
+              'version' => '2.0',
+              'handler' =>
+              \GuzzleHttp\HandlerStack::__set_state(array(
+                 'handler' =>
+                \Closure::__set_state(array(
+                )),
+                 'stack' =>
+                array (
+                  0 =>
+                  array (
+                    0 =>
+                    \Closure::__set_state(array(
+                    )),
+                    1 => 'http_errors',
+                  ),
+                  1 =>
+                  array (
+                    0 =>
+                    \Closure::__set_state(array(
+                    )),
+                    1 => 'allow_redirects',
+                  ),
+                  2 =>
+                  array (
+                    0 =>
+                    \Closure::__set_state(array(
+                    )),
+                    1 => 'cookies',
+                  ),
+                  3 =>
+                  array (
+                    0 =>
+                    \Closure::__set_state(array(
+                    )),
+                    1 => 'prepare_body',
+                  ),
+                ),
+                 'cached' =>
+                \Closure::__set_state(array(
+                )),
+              )),
+              'allow_redirects' =>
+              array (
+                'max' => 5,
+                'protocols' =>
+                array (
+                  0 => 'http',
+                  1 => 'https',
+                ),
+                'strict' => false,
+                'referer' => false,
+                'track_redirects' => false,
+              ),
+              'http_errors' => true,
+              'decode_content' => true,
+              'verify' => true,
+              'cookies' => false,
+              'idn_conversion' => false,
+              'headers' =>
+              array (
+                'User-Agent' => 'GuzzleHttp/7',
+              ),
+            ),
+          )),
+        )),
+        'SergiX44\\Nutgram\\Hydrator\\Hydrator' =>
+        \SergiX44\Container\Definition::__set_state(array(
+           'shared' => true,
+           'id' => 'SergiX44\\Nutgram\\Hydrator\\Hydrator',
+           'resolver' => 'SergiX44\\Nutgram\\Hydrator\\NutgramHydrator',
+           'instance' =>
+          \SergiX44\Nutgram\Hydrator\NutgramHydrator::__set_state(array(
+             'mapper' =>
+            \SergiX44\Hydrator\Hydrator::__set_state(array(
+               'container' => NULL,
+            )),
+          )),
+        )),
+        'Psr\\SimpleCache\\CacheInterface' =>
+        \SergiX44\Container\Definition::__set_state(array(
+           'shared' => true,
+           'id' => 'Psr\\SimpleCache\\CacheInterface',
+           'resolver' => 'SergiX44\\Nutgram\\Cache\\Adapters\\ArrayCache',
+           'instance' =>
+          \SergiX44\Nutgram\Cache\Adapters\ArrayCache::__set_state(array(
+             'cache' =>
+            array (
+            ),
+             'expires' =>
+            array (
+            ),
+          )),
+        )),
+        'Psr\\Log\\LoggerInterface' =>
+        \SergiX44\Container\Definition::__set_state(array(
+           'shared' => true,
+           'id' => 'Psr\\Log\\LoggerInterface',
+           'resolver' => 'Psr\\Log\\NullLogger',
+           'instance' =>
+          \Psr\Log\NullLogger::__set_state(array(
+          )),
+        )),
+        'SergiX44\\Nutgram\\Cache\\ConversationCache' =>
+        \SergiX44\Container\Definition::__set_state(array(
+           'shared' => true,
+           'id' => 'SergiX44\\Nutgram\\Cache\\ConversationCache',
+           'resolver' =>
+          \Closure::__set_state(array(
+          )),
+           'instance' =>
+          \SergiX44\Nutgram\Cache\ConversationCache::__set_state(array(
+             'cache' =>
+            \SergiX44\Nutgram\Cache\Adapters\ArrayCache::__set_state(array(
+               'cache' =>
+              array (
+              ),
+               'expires' =>
+              array (
+              ),
+            )),
+             'ttl' => 43200,
+             'key' => 'CONVERSATION',
+             'botId' => 6519530193,
+          )),
+        )),
+        'SergiX44\\Nutgram\\Cache\\GlobalCache' =>
+        \SergiX44\Container\Definition::__set_state(array(
+           'shared' => true,
+           'id' => 'SergiX44\\Nutgram\\Cache\\GlobalCache',
+           'resolver' =>
+          \Closure::__set_state(array(
+          )),
+           'instance' =>
+          \SergiX44\Nutgram\Cache\GlobalCache::__set_state(array(
+             'cache' =>
+            \SergiX44\Nutgram\Cache\Adapters\ArrayCache::__set_state(array(
+               'cache' =>
+              array (
+              ),
+               'expires' =>
+              array (
+              ),
+            )),
+             'ttl' => NULL,
+             'key' => 'GLOBAL',
+             'botId' => 6519530193,
+          )),
+        )),
+        'SergiX44\\Nutgram\\Cache\\UserCache' =>
+        \SergiX44\Container\Definition::__set_state(array(
+           'shared' => true,
+           'id' => 'SergiX44\\Nutgram\\Cache\\UserCache',
+           'resolver' =>
+          \Closure::__set_state(array(
+          )),
+           'instance' =>
+          \SergiX44\Nutgram\Cache\UserCache::__set_state(array(
+             'cache' =>
+            \SergiX44\Nutgram\Cache\Adapters\ArrayCache::__set_state(array(
+               'cache' =>
+              array (
+              ),
+               'expires' =>
+              array (
+              ),
+            )),
+             'ttl' => NULL,
+             'key' => 'USER',
+             'botId' => 6519530193,
+          )),
+        )),
+        'SergiX44\\Nutgram\\RunningMode\\RunningMode' =>
+        \SergiX44\Container\Definition::__set_state(array(
+           'shared' => false,
+           'id' => 'SergiX44\\Nutgram\\RunningMode\\RunningMode',
+           'resolver' => 'SergiX44\\Nutgram\\RunningMode\\Polling',
+           'instance' => NULL,
+        )),
+        'SergiX44\\Nutgram\\Nutgram' =>
+        \SergiX44\Container\Definition::__set_state(array(
+           'shared' => false,
+           'id' => 'SergiX44\\Nutgram\\Nutgram',
+           'resolver' => NULL,
+           'instance' => NULL,
+        )),
+      ),
+       'delegate' => NULL,
+    )),
+     'enableAsResponse' => false,
+     'responseSent' => false,
+     'store' =>
+    array (
+    ),
+     'currentHandler' =>
+    \SergiX44\Nutgram\Handlers\Handler::__set_state(array(
+       'head' =>
+      \SergiX44\Nutgram\Middleware\Link::__set_state(array(
+         'callable' => NULL,
+         'next' => NULL,
+      )),
+       'pattern' => NULL,
+       'constraints' =>
+      array (
+      ),
+       'parameters' =>
+      array (
+      ),
+       'callable' =>
+      \Closure::__set_state(array(
+      )),
+       'skipGlobalMiddlewares' => false,
+       'skippedGlobalMiddlewares' =>
+      array (
+      ),
+       'tags' =>
+      array (
+      ),
+       'disabled' => false,
+    )),
+  )),
+   'id' => -1002090421353,
+   'type' =>
+  \SergiX44\Nutgram\Telegram\Properties\ChatType::SUPERGROUP,
+   'title' => 'Gleb & Наташкин',
+   'username' => NULL,
+   'first_name' => NULL,
+   'last_name' => NULL,
+   'is_forum' => true,
+   'photo' => NULL,
+   'active_usernames' => NULL,
+   'emoji_status_custom_emoji_id' => NULL,
+   'emoji_status_expiration_date' => NULL,
+   'bio' => NULL,
+   'has_private_forwards' => NULL,
+   'has_restricted_voice_and_video_messages' => NULL,
+   'join_to_send_messages' => NULL,
+   'join_by_request' => NULL,
+   'description' => NULL,
+   'invite_link' => NULL,
+   'pinned_message' => NULL,
+   'permissions' => NULL,
+   'slow_mode_delay' => NULL,
+   'message_auto_delete_time' => NULL,
+   'has_aggressive_anti_spam_enabled' => NULL,
+   'has_hidden_members' => NULL,
+   'has_protected_content' => NULL,
+   'sticker_set_name' => NULL,
+   'can_set_sticker_set' => NULL,
+   'linked_chat_id' => NULL,
+   'location' => NULL,
+))
