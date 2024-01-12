@@ -1,5 +1,9 @@
 {
     "require": {
-        "nutgram/nutgram": "^4.11"
+        "nutgram/nutgram": "^4.11",
+        "ext-pdo": "*"
+    },
+    "autoload": {
+        "psr-4": {"App\\": "App/"}
     }
 }

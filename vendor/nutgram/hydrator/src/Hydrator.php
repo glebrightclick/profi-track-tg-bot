@@ -18,6 +18,7 @@ use ReflectionUnionType;
 use SergiX44\Hydrator\Annotation\Alias;
 use SergiX44\Hydrator\Annotation\ArrayType;
 use SergiX44\Hydrator\Annotation\ConcreteResolver;
+use SergiX44\Hydrator\Annotation\Mutate;
 use SergiX44\Hydrator\Annotation\SkipConstructor;
 use SergiX44\Hydrator\Annotation\UnionResolver;
 use SergiX44\Hydrator\Exception\InvalidObjectException;
@@ -89,8 +90,6 @@ class Hydrator implements HydratorInterface
             if ($property->isStatic()) {
                 continue;
             }
-
-            $property->setAccessible(true);
             $propertyType = $property->getType();
 
             if ($propertyType === null) {
@@ -136,6 +135,11 @@ class Hydrator implements HydratorInterface
                 }
 
                 continue;
+            }
+
+            $mutator = $this->getAttributeInstance($property, Mutate::class);
+            if ($mutator !== null) {
+                $data[$key] = $mutator->apply($data[$key]);
             }
 
             $this->hydrateProperty($object, $class, $property, $propertyType, $data[$key]);
@@ -234,6 +238,10 @@ class Hydrator implements HydratorInterface
                     'The %s class cannot be instantiated. Please define a concrete resolver attribute.',
                     $object
                 ));
+            }
+
+            if (is_object($data)) {
+                $data = get_object_vars($data);
             }
 
             return $this->initializeObject($attribute->concreteFor($data), $data);
@@ -607,7 +615,7 @@ class Hydrator implements HydratorInterface
                 return $arrayType->class::tryFrom($object);
             }
 
-            $newInstance = $this->initializeObject($arrayType->class, []);
+            $newInstance = $this->initializeObject($arrayType->class, $object);
 
             return $this->hydrate($newInstance, $object);
         }, $array);

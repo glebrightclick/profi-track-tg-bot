@@ -2,6 +2,165 @@
 
 All notable changes to `nutgram` will be documented in this file.
 
+## 4.14.2 - 2024-01-05
+
+### What's Changed
+
+* Fix wrong property name in ReactionTypeCustomEmoji class by @Lukasss93 in https://github.com/nutgram/nutgram/pull/641
+
+**Full Changelog**: https://github.com/nutgram/nutgram/compare/4.14.1...4.14.2
+
+## 4.14.1 - 2024-01-04
+
+### What's Changed
+
+* Fix missing underscore support to named parameters by @Lukasss93 in https://github.com/nutgram/nutgram/pull/638
+* Fix missing make methods by @Lukasss93 in https://github.com/nutgram/nutgram/pull/639
+* Fix missing enum case + Fix nullable message type by @Lukasss93 in https://github.com/nutgram/nutgram/pull/640
+
+**Full Changelog**: https://github.com/nutgram/nutgram/compare/4.14.0...4.14.1
+
+## 4.14.0 - 2023-12-30
+
+#### What's Changed
+
+* Update to Bot API 7.0 by @Lukasss93 in https://github.com/nutgram/nutgram/pull/633
+
+**Full Changelog**: https://github.com/nutgram/nutgram/compare/4.13.1...4.14.0
+
+### ⚠️ Warning
+
+The signature of the following methods has changed, if you don't use named parameters, remember to change the method calls before releasing to production:
+
+- **copyMessage**
+  
+  - Added the `reply_parameters` parameter after the `allow_sending_without_reply` and before the `reply_markup` parameter
+  
+- **sendMessage**
+  
+  - Added the `reply_parameters` parameter after the `allow_sending_without_reply` and before the `reply_markup` parameter
+  - Added the `link_preview_options` parameter after the `disable_web_page_preview` and before the `disable_notification` parameter
+  
+- **editMessageText**
+  
+  - Added the `link_preview_options` parameter after the `allow_sending_without_reply` and before the `reply_markup` parameter
+  
+- **sendPhoto**
+  
+  - Added the `reply_parameters` parameter after the `allow_sending_without_reply` and before the `reply_markup` parameter
+  
+- **sendVideo**
+  
+  - Added the `reply_parameters` parameter after the `allow_sending_without_reply` and before the `reply_markup` parameter
+  
+- **sendAnimation**
+  
+  - Added the `reply_parameters` parameter after the `allow_sending_without_reply` and before the `reply_markup` parameter
+  
+- **sendAudio**
+  
+  - Added the `reply_parameters` parameter after the `allow_sending_without_reply` and before the `reply_markup` parameter
+  
+- **sendDocument**
+  
+  - Added the `reply_parameters` parameter after the `allow_sending_without_reply` and before the `reply_markup` parameter
+  
+- **sendSticker**
+  
+  - Added the `reply_parameters` parameter after the `allow_sending_without_reply` and before the `reply_markup` parameter
+  
+- **sendVideoNote**
+  
+  - Added the `reply_parameters` parameter after the `allow_sending_without_reply` and before the `reply_markup` parameter
+  
+- **sendVoice**
+  
+  - Added the `reply_parameters` parameter after the `allow_sending_without_reply` and before the `reply_markup` parameter
+  
+- **sendLocation**
+  
+  - Added the `reply_parameters` parameter after the `allow_sending_without_reply` and before the `reply_markup` parameter
+  
+- **sendVenue**
+  
+  - Added the `reply_parameters` parameter after the `allow_sending_without_reply` and before the `reply_markup` parameter
+  
+- **sendContact**
+  
+  - Added the `reply_parameters` parameter after the `allow_sending_without_reply` and before the `reply_markup` parameter
+  
+- **sendPoll**
+  
+  - Added the `reply_parameters` parameter after the `allow_sending_without_reply` and before the `reply_markup` parameter
+  
+- **sendDice**
+  
+  - Added the `reply_parameters` parameter after the `allow_sending_without_reply` and before the `reply_markup` parameter
+  
+- **sendInvoice**
+  
+  - Added the `reply_parameters` parameter after the `allow_sending_without_reply` and before the `reply_markup` parameter
+  
+- **sendGame**
+  
+  - Added the `reply_parameters parameter` after the `allow_sending_without_reply` and before the `reply_markup` parameter
+  
+- **sendMediaGroup**
+  
+  - Added the `reply_parameters` parameter after the `allow_sending_without_reply` and before the `clientOpt` parameter
+  
+
+## 4.13.1 - 2023-12-25
+
+### What's Changed
+
+* fix update is null when falling the in catch case by @sergix44 in https://github.com/nutgram/nutgram/pull/632
+
+**Full Changelog**: https://github.com/nutgram/nutgram/compare/4.13.0...4.13.1
+
+## 4.13.0 - 2023-12-19
+
+### What's Changed
+
+* Fix regex for named parameters by @Lukasss93 in https://github.com/nutgram/nutgram/pull/628
+* Add new where constraints by @Lukasss93 in https://github.com/nutgram/nutgram/pull/629
+
+**Full Changelog**: https://github.com/nutgram/nutgram/compare/4.12.1...4.13.0
+
+## 4.12.1 - 2023-12-01
+
+### What's Changed
+
+* Fix missing onUpdate handler + refactor handler structure by @Lukasss93 in https://github.com/nutgram/nutgram/pull/621
+
+**Full Changelog**: https://github.com/nutgram/nutgram/compare/4.12.0...4.12.1
+
+## 4.12.0 - 2023-11-30
+
+### What's Changed
+
+* Fix registerMyCommands with commands with optional parameters by @Lukasss93 in https://github.com/nutgram/nutgram/pull/619
+* Add ability to manually pass additional parameters to conversations by @Lukasss93 in https://github.com/nutgram/nutgram/pull/620
+* Resolve parameters in the default conversation step by @Lukasss93 in https://github.com/nutgram/nutgram/pull/620
+
+**Full Changelog**: https://github.com/nutgram/nutgram/compare/4.11.2...4.12
+
+## 4.11.2 - 2023-11-29
+
+### What's Changed
+
+* Refine user and chat matching by @Lukasss93 in https://github.com/nutgram/nutgram/pull/617
+
+**Full Changelog**: https://github.com/nutgram/nutgram/compare/4.11.1...4.11.2
+
+## 4.11.1 - 2023-11-23
+
+### What's Changed
+
+- Fix missing message handlers by @Lukasss93 in https://github.com/nutgram/nutgram/pull/613
+
+**Full Changelog**: https://github.com/nutgram/nutgram/compare/4.11.0...4.11.1
+
 ## 4.11.0 - 2023-10-27
 
 ### What's Changed

@@ -6,8 +6,7 @@ use Attribute;
 
 /**
  * @Annotation
- *
- * @Target({"PROPERTY"})
+ * @Target({"CLASS"})
  */
 #[Attribute(Attribute::TARGET_CLASS)]
 abstract class ConcreteResolver
