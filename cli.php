@@ -11,13 +11,21 @@ use SergiX44\Nutgram\Nutgram;
 use SergiX44\Nutgram\RunningMode\Polling;
 
 try {
-    $bot = new Nutgram(TOKEN);
+    $config = new \SergiX44\Nutgram\Configuration(
+        enableHttp2: false,
+    );
+    $bot = new Nutgram(TOKEN, $config);
     $bot->setRunningMode(Polling::class);
     Conversation::refreshOnDeserialize();
 
+    echo "----------\n";
+    echo strtotime(date('now')) . "\n";
+
     // restricted to private chat only
     $private = function (Nutgram $bot, $next) {
-        if ($bot->userId() != $bot->chatId()) {
+        if ($bot->userId() != $bot->chatId() && $bot->chatId() != CHAT_ID) {
+            echo "----------\n";
+            echo "attempt from chat: " . $bot->chatId() . "\n";
             return;
         }
 
@@ -47,6 +55,14 @@ try {
     // /help command handler
     // displays description of all commands
     // $bot->onCommand('help', Help::class);
+
+    $bot->onMessage(function(Nutgram $bot) {
+        echo "----------\n";
+        echo "user_id: " . $bot->userId() . "\n";
+        echo "chat: " . $bot->message()->chat->id . "\n";
+        echo "thread: " . $bot->message()->message_thread_id . "\n";
+        echo "text?: " . ($bot->message()->text ?? "NULL") . "\n";
+    });
 
     $bot->run();
 } catch (InvalidArgumentException $e) {

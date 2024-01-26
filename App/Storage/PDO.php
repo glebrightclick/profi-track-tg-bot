@@ -3,7 +3,6 @@
 namespace App\Storage;
 
 use PDO as Library;
-use SergiX44\Nutgram\Exception\InvalidDataException;
 
 class PDO extends AbstractStorage
 {
@@ -11,12 +10,17 @@ class PDO extends AbstractStorage
     public const STATUS_APPROVED = 'approved';
     public const STATUS_BLOCKED = 'blocked';
 
-    private Library $pdo;
+    private ?Library $pdo;
 
     public function __construct()
     {
         $this->pdo = new Library("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USERNAME, DB_PASSWORD);
         $this->pdo->setAttribute(Library::ATTR_ERRMODE, Library::ERRMODE_EXCEPTION);
+    }
+
+    public function close(): void
+    {
+        $this->pdo = null;
     }
 
     public function getQuickUsers(): array
@@ -66,10 +70,11 @@ class PDO extends AbstractStorage
         return $stmt->fetchAll(Library::FETCH_ASSOC) ?: null;
     }
 
-    public function addEmptyUserSettings(string $userHash): void
+    public function addEmptyUserSettings(string $userHash, string $chatId): void
     {
-        $stmt = $this->pdo->prepare("INSERT INTO user_settings (user_hash) VALUES (:userHash)");
+        $stmt = $this->pdo->prepare("INSERT INTO user_settings (user_hash, chat_id) VALUES (:userHash, :chatId)");
         $stmt->bindParam(':userHash', $userHash);
+        $stmt->bindParam(':chatId', $chatId);
         $stmt->execute();
     }
 
@@ -125,14 +130,15 @@ class PDO extends AbstractStorage
     /**
      * CREATE TABLE `topics` (
      * `id` int(64) NOT NULL,
+     * `chat_id` varchar(64) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
      * `name` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
      * `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-     * PRIMARY KEY (`id`)
+     * PRIMARY KEY (`chat_id`,`id`)
      * ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
      */
-    public function getTopics(): array
+    public function getTopics(string $chatId): array
     {
-        $stmt = $this->pdo->prepare("select id, name, date_created from topics order by date_created asc");
+        $stmt = $this->pdo->prepare("select id, name, date_created from topics where chat_id = '$chatId' order by date_created asc");
         $stmt->execute();
 
         if (!$topics = $stmt->fetchAll(Library::FETCH_ASSOC)) {
