@@ -10,7 +10,8 @@ use SergiX44\Nutgram\Conversations\Conversation;
 use SergiX44\Nutgram\Nutgram;
 use SergiX44\Nutgram\RunningMode\Polling;
 
-try {
+function run(): void
+{
     $config = new \SergiX44\Nutgram\Configuration(
         enableHttp2: false,
     );
@@ -57,18 +58,39 @@ try {
     // $bot->onCommand('help', Help::class);
 
     $bot->onMessage(function(Nutgram $bot) {
-        echo "----------\n";
-        echo "user_id: " . $bot->userId() . "\n";
-        echo "chat: " . $bot->message()->chat->id . "\n";
-        echo "thread: " . $bot->message()->message_thread_id . "\n";
-        echo "text?: " . ($bot->message()->text ?? "NULL") . "\n";
+        output(
+            "----------\n" .
+            "user_id: " . $bot->userId() . "\n" .
+            "chat: " . $bot->message()->chat->id . "\n" .
+            "thread: " . $bot->message()->message_thread_id . "\n" .
+            "text?: " . ($bot->message()->text ?? "NULL") . "\n"
+        );
     });
 
     $bot->run();
-} catch (InvalidArgumentException $e) {
-    exit('Wrong token provided');
-} catch (\Psr\Container\NotFoundExceptionInterface $e) {
-    exit('Not found exception inferface');
-} catch (\Psr\Container\ContainerExceptionInterface $e) {
-    exit('Container exception interface');
+}
+
+$unknown = 0;
+$attempt = 0;
+while (true) {
+    try {
+        run();
+    } catch (GuzzleHttp\Exception\ConnectException $connectException) {
+        output("looks like telegram api isn't responding for a while: " . $connectException->getMessage());
+    } catch (GuzzleHttp\Exception\ClientException $clientException) {
+        output("found guzzle client exception: " . $clientException->getMessage());
+    } catch (SergiX44\Nutgram\Telegram\Exceptions\TelegramException $telegramException) {
+        output("found telegram exception: " . $telegramException->getMessage());
+    } catch (InvalidArgumentException $e) {
+        exit('Wrong token provided');
+    } catch (\Exception $exception) {
+        output(
+            "found unknown exception\n" .
+            "message: " . $exception->getMessage() . "\n" .
+            "file: " . $exception->getFile() . ":" . $exception->getLine()
+        );
+    } finally {
+        output("restarting bot (attempt $attempt)" . ($unknown > 0 ? " (unknown $unknown)" : ""));
+        $attempt++;
+    }
 }

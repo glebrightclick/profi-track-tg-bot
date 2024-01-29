@@ -6,7 +6,8 @@ function encryptUserId(int $userId): string
     return md5($userId . SALT);
 }
 
-function getStorage(): \App\Storage\AbstractStorage
+function output(string $text): void
 {
-    return new \App\Storage\PDO(); // new \App\Storage\PDOPlusMemcache();
+    $date = date('Y-m-d H:i:s');
+    echo "[$date]: $text\n";
 }

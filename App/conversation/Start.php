@@ -26,7 +26,7 @@ class Start extends Conversation
         // add user into db by hash only if it's first request
         $this->userHash = encryptUserId($bot->userId());
         if (is_null($this->storage->getUserSettings($this->userHash))) {
-            $this->storage->addEmptyUserSettings($this->userHash);
+            $this->storage->addEmptyUserSettings($this->userHash, CHAT_ID);
 
             // send message to admin
             $bot->sendMessage(

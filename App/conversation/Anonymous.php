@@ -6,6 +6,7 @@ use App\Storage\PDO;
 use SergiX44\Nutgram\Conversations\InlineMenu;
 use SergiX44\Nutgram\Nutgram;
 use SergiX44\Nutgram\Telegram\Types\Keyboard\InlineKeyboardButton;
+use SergiX44\Nutgram\Telegram\Types\Message\Message;
 
 class Anonymous extends InlineMenu
 {
@@ -16,6 +17,7 @@ class Anonymous extends InlineMenu
 
     public function __construct(private PDO $storage)
     {
+        echo "opening storage connection\n";
         parent::__construct();
     }
 
@@ -72,7 +74,7 @@ class Anonymous extends InlineMenu
             return;
         }
 
-        $topics = $this->storage->getTopics();
+        $topics = $this->storage->getTopics(CHAT_ID);
         if (count($topics) < 1) {
             $bot->sendMessage('Не найдено доступных веток канала');
             $this->end();
@@ -228,6 +230,14 @@ class Anonymous extends InlineMenu
         }
     }
 
+    public function showMenu(bool $reopen = false, bool $noHandlers = false, bool $noMiddlewares = false): Message|null
+    {
+        echo "close storage connection\n";
+        $this->storage->close();
+
+        return parent::showMenu($reopen, $noHandlers, $noMiddlewares);
+    }
+
     public function finish(Nutgram $bot): void
     {
         $bot->sendMessage("Меню анонимизации было закрыто!\n\n/anonymous для возврата в меню");
@@ -238,5 +248,13 @@ class Anonymous extends InlineMenu
     {
         $bot->sendMessage("Меню было автоматически закрыто!\n\n/anonymous для возврата в меню");
         $this->end();
+    }
+
+    protected function end(): void
+    {
+        echo "close storage connection\n";
+        $this->storage->close();
+
+        parent::end();
     }
 }
