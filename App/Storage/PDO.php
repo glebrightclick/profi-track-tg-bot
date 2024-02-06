@@ -33,11 +33,11 @@ class PDO extends AbstractStorage
      * CREATE TABLE `user_settings` (
      * `user_hash` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
      * `nickname` varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL,
+     * `nickname_updated_at` timestamp NULL DEFAULT NULL,
      * `chosen_topic_id` int(64) DEFAULT NULL,
+     * `chat_id` varchar(64) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
      * `status` enum('new','approved','blocked') COLLATE utf8_unicode_ci DEFAULT 'new',
-     * PRIMARY KEY (`user_hash`),
-     * KEY `chosen_topic_id` (`chosen_topic_id`),
-     * CONSTRAINT `user_settings_ibfk_1` FOREIGN KEY (`chosen_topic_id`) REFERENCES `topics` (`id`)
+     * PRIMARY KEY (`user_hash`)
      * ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
      */
     public function getUserSettings(string $userHash): ?array
@@ -49,10 +49,24 @@ class PDO extends AbstractStorage
         return $stmt->fetch(Library::FETCH_ASSOC) ?: null;
     }
 
+    public function updateUserHash(string $oldUserHash, string $newUserHash): bool
+    {
+        $stmt = $this->pdo->prepare("UPDATE user_settings SET user_hash = :newUserHash WHERE user_hash = :oldUserHash");
+        $stmt->bindParam(':newUserHash', $newUserHash);
+        $stmt->bindParam(':oldUserHash', $oldUserHash);
+        $stmt->execute();
+
+        // Return the number of affected rows (if needed)
+        return $stmt->rowCount() > 0;
+    }
+
     public function getUsersByFilter(array $filterData): ?array
     {
         $sql = "SELECT * FROM user_settings WHERE 1";
 
+        if (isset($filterData['nickname'])) {
+            $sql .= " AND nickname = :nickname";
+        }
         if (isset($filterData['status'])) {
             $statuses = implode(', ', array_fill(0, count($filterData['status']), '?'));
             $sql .= " AND status IN ($statuses)";
@@ -64,6 +78,9 @@ class PDO extends AbstractStorage
             foreach ($filterData['status'] as $index => $status) {
                 $stmt->bindValue($index + 1, $status);
             }
+        }
+        if (isset($filterData['nickname'])) {
+            $stmt->bindParam(':nickname', $filterData['nickname']);
         }
         $stmt->execute();
 
@@ -85,6 +102,9 @@ class PDO extends AbstractStorage
         if (isset($updateData['nickname'])) {
             $sql .= " nickname = :newNickname,";
         }
+        if (isset($updateData['nickname_updated_at'])) {
+            $sql .= " nickname_updated_at = :newNicknameUpdatedAt";
+        }
         if (isset($updateData['chosen_topic_id'])) {
             $sql .= " chosen_topic_id = :newChosenTopicId,";
         }
@@ -97,6 +117,9 @@ class PDO extends AbstractStorage
         if (isset($updateData['nickname'])) {
             $stmt->bindParam(':newNickname', $updateData['nickname']);
         }
+        if (isset($updateData['nickname_updated_at'])) {
+            $stmt->bindParam(':newNicknameUpdatedAt', $updateData['nickname_updated_at']);
+        }
         if (isset($updateData['chosen_topic_id'])) {
             $stmt->bindParam(':newChosenTopicId', $updateData['chosen_topic_id'], Library::PARAM_INT);
         }
@@ -106,14 +129,14 @@ class PDO extends AbstractStorage
         return $stmt->rowCount() > 0;
     }
 
-    public function approveAll(): void
+    public function approveAll(): bool
     {
         $stmt = $this->pdo->prepare("UPDATE user_settings SET status = :approved WHERE status = :new");
         $approved = self::STATUS_APPROVED;
         $new = self::STATUS_NEW;
         $stmt->bindParam(":new", $new);
         $stmt->bindParam(":approved", $approved);
-        $stmt->execute();
+        return $stmt->execute();
     }
 
     public function blockByUserHash(string $userHash): bool

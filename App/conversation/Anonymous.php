@@ -2,6 +2,7 @@
 
 namespace App\Conversation;
 
+use App\Conversation\Helpers\CheckNicknameDecision;
 use App\Storage\PDO;
 use SergiX44\Nutgram\Conversations\InlineMenu;
 use SergiX44\Nutgram\Nutgram;
@@ -13,11 +14,11 @@ class Anonymous extends InlineMenu
     public string $userHash;
     public ?string $nickname = null;
     public ?int $chosenTopicId = null;
+    public ?string $nicknameUpdatedAt = null;
     public ?array $topics = null;
 
     public function __construct(private PDO $storage)
     {
-        echo "opening storage connection\n";
         parent::__construct();
     }
 
@@ -47,7 +48,9 @@ class Anonymous extends InlineMenu
         // when both nickname and chosen_topic_id is provided, let user send anonymous message
         if (!is_null($this->nickname) && !is_null($this->chosenTopicId)) {
             /** @see self::handleChooseMessage() */
-            $this->addButtonRow(InlineKeyboardButton::make('Отправить анонимное сообщение', callback_data: '@handleChooseMessage'));
+            $this->addButtonRow(
+                InlineKeyboardButton::make('Отправить анонимное сообщение', callback_data: '@handleChooseMessage')
+            );
         }
         $this->applyFinishButton();
         return $this;
@@ -81,7 +84,8 @@ class Anonymous extends InlineMenu
             return;
         }
 
-        $this->userHash = encryptUserId($bot->userId());
+        $this->userHash = encrypt($bot->userId());
+        $oldHash = encryptUserId($bot->userId());
         $user = null;
         // try to get users from cache
         if ($quickUsers = $this->storage->getQuickUsers()) {
@@ -89,8 +93,13 @@ class Anonymous extends InlineMenu
         }
         // if nothing in cache, use direct storage request
         if (is_null($user)) {
+            if ($this->storage->getUserSettings($oldHash)) {
+                $this->storage->updateUserHash($oldHash, $this->userHash);
+                output("hash was changed automatically: $oldHash -> {$this->userHash}");
+            }
+
             if (!$user = $this->storage->getUserSettings($this->userHash)) {
-                $bot->sendMessage("Не найдены настройки пользователя в базе ПрофиТрек");
+                $bot->sendMessage("Не найдены настройки пользователя в базе ПрофиТрек " . $this->userHash);
                 $this->end();
                 return;
             }
@@ -98,13 +107,17 @@ class Anonymous extends InlineMenu
 
         // we check for "approved by admin" status
         if ($user['status'] != PDO::STATUS_APPROVED) {
-            $bot->sendMessage("Возможность отправки анонимных сообщений не активирована. Повторите попытку позднее");
+            $bot->sendMessage(
+                "Возможность отправки анонимных сообщений не активирована.\n" .
+                "Повторите попытку позднее"
+            );
             $this->end();
             return;
         }
 
         $this->nickname = $user['nickname'];
         $this->chosenTopicId = $user['chosen_topic_id'];
+        $this->nicknameUpdatedAt = $user['nickname_updated_at'] ?? null;
         $this->topics = $topics;
 
         // get current open topic
@@ -120,9 +133,22 @@ class Anonymous extends InlineMenu
 
     public function handleChooseNickname(Nutgram $bot): void
     {
+        if ($this->nicknameUpdatedAt) {
+            // add 30 days to nickname_updated_at timestamp and convert to datetime string
+            $nicknameLockedUntil = strtotime($this->nicknameUpdatedAt) + 30 * 24 * 60 * 60;
+            $now = date('Y-m-d H:i:s');
+
+            if ($now < date('Y-m-d H:i:s', $nicknameLockedUntil)) {
+                $this->refreshMenu("Редактирование никнейма недоступно до " . date('d.m.Y', $nicknameLockedUntil));
+                $this->applyBackButton()
+                    ->showMenu();
+                return;
+            }
+        }
+
         $text = "Пожалуйста, выберите никнейм.\n" .
-            "Никнейм должен быть не длиннее 32 символов и содержать только буквы и цифры для удобства отображения.\n" .
-            "Спасибо!";
+            "Никнейм должен быть не длиннее 15 символов и содержать только буквы и цифры для удобства отображения.\n" .
+            "Будьте аккуратны при выборе никнейма: повторное изменение будет доступно через месяц!";
 
         $this->refreshMenu($text);
         $this
@@ -144,22 +170,43 @@ class Anonymous extends InlineMenu
         $bot->deleteMessage(chat_id: $bot->userId(), message_id: $message->message_id);
 
         $text = $message->text;
-        if (is_null($text) || !$this->checkNickname($text)) {
-            $this->menuText("Некорректный формат. Повторите попытку")->showMenu();
+        $checkNickname = $this->checkNickname($text);
+        if ($checkNickname->isRejected()) {
+            $this->menuText($checkNickname->reason())->showMenu();
             return;
         }
 
         $this->nickname = $text;
-        $this->storage->updateUserSettings($this->userHash, ['nickname' => $this->nickname]);
+        $this->storage->updateUserSettings(
+            $this->userHash,
+            ['nickname' => $this->nickname, 'nickname_updated_at' => date('Y-m-d H:i:s')],
+        );
 
         $this->refreshMenu();
         $this->applyDefaultButtons()->showMenu();
     }
 
-    private function checkNickname(string $nickname): bool
+    private function checkNickname(?string $nickname): CheckNicknameDecision
     {
+        $decision = new CheckNicknameDecision();
+        if (is_null($nickname)) {
+            return $decision->rejected("Некорректный формат");
+        }
+
+        if (preg_match('/^[a-zA-Zа-яА-Я0-9]+$/u', $nickname) !== 1) {
+            return $decision->rejected("Используйте только буквы и цифры");
+        }
+
         $strlen = strlen($nickname);
-        return $strlen > 0 && $strlen < 32;
+        if ($strlen > 15) {
+            return $decision->rejected("Никнейм должен быть не длиннее 15 символов");
+        }
+
+        if (count($this->storage->getUsersByFilter(['nickname' => $nickname]) ?? []) > 0) {
+            return $decision->rejected("Никнейм занят");
+        }
+
+        return $decision->confirmed();
     }
 
     public function handleChooseForumTopic(Nutgram $bot): void
@@ -232,7 +279,6 @@ class Anonymous extends InlineMenu
 
     public function showMenu(bool $reopen = false, bool $noHandlers = false, bool $noMiddlewares = false): Message|null
     {
-        echo "close storage connection\n";
         $this->storage->close();
 
         return parent::showMenu($reopen, $noHandlers, $noMiddlewares);
@@ -252,9 +298,7 @@ class Anonymous extends InlineMenu
 
     protected function end(): void
     {
-        echo "close storage connection\n";
         $this->storage->close();
-
         parent::end();
     }
 }

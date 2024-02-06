@@ -6,27 +6,29 @@ require_once __DIR__ . '/App/functions.php';
 use App\Conversation\Anonymous;
 use App\Conversation\Manage;
 use App\Conversation\Start;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
+use SergiX44\Nutgram\Configuration;
 use SergiX44\Nutgram\Conversations\Conversation;
 use SergiX44\Nutgram\Nutgram;
 use SergiX44\Nutgram\RunningMode\Polling;
 
+/**
+ * @return void
+ * @throws ContainerExceptionInterface
+ * @throws NotFoundExceptionInterface
+ * @throws SergiX44\Nutgram\Telegram\Exceptions\TelegramException
+ */
 function run(): void
 {
-    $config = new \SergiX44\Nutgram\Configuration(
-        enableHttp2: false,
-    );
+    $config = new Configuration(enableHttp2: false);
     $bot = new Nutgram(TOKEN, $config);
     $bot->setRunningMode(Polling::class);
     Conversation::refreshOnDeserialize();
 
-    echo "----------\n";
-    echo strtotime(date('now')) . "\n";
-
     // restricted to private chat only
     $private = function (Nutgram $bot, $next) {
-        if ($bot->userId() != $bot->chatId() && $bot->chatId() != CHAT_ID) {
-            echo "----------\n";
-            echo "attempt from chat: " . $bot->chatId() . "\n";
+        if ($bot->userId() != $bot->chatId()) {
             return;
         }
 
@@ -57,16 +59,6 @@ function run(): void
     // displays description of all commands
     // $bot->onCommand('help', Help::class);
 
-    $bot->onMessage(function(Nutgram $bot) {
-        output(
-            "----------\n" .
-            "user_id: " . $bot->userId() . "\n" .
-            "chat: " . $bot->message()->chat->id . "\n" .
-            "thread: " . $bot->message()->message_thread_id . "\n" .
-            "text?: " . ($bot->message()->text ?? "NULL") . "\n"
-        );
-    });
-
     $bot->run();
 }
 
@@ -81,13 +73,15 @@ while (true) {
         output("found guzzle client exception: " . $clientException->getMessage());
     } catch (SergiX44\Nutgram\Telegram\Exceptions\TelegramException $telegramException) {
         output("found telegram exception: " . $telegramException->getMessage());
+    } catch (ContainerExceptionInterface $e) {
+        output("found container exception: " . $e->getMessage());
     } catch (InvalidArgumentException $e) {
         exit('Wrong token provided');
     } catch (\Exception $exception) {
         output(
             "found unknown exception\n" .
-            "message: " . $exception->getMessage() . "\n" .
-            "file: " . $exception->getFile() . ":" . $exception->getLine()
+            "message: {$exception->getMessage()}\n" .
+            "file: {$exception->getFile()}:{$exception->getLine()}"
         );
     } finally {
         output("restarting bot (attempt $attempt)" . ($unknown > 0 ? " (unknown $unknown)" : ""));

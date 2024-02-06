@@ -2,6 +2,40 @@
 
 All notable changes to `nutgram` will be documented in this file.
 
+## 4.15.1 - 2024-01-31
+
+### What's Changed
+
+* Update README.md by @superXdev in https://github.com/nutgram/nutgram/pull/653
+* Fix WebAppInfo exception by @Lukasss93 in https://github.com/nutgram/nutgram/pull/657
+* Ignore "_bot" property + merge "_extra" property to current data by @Lukasss93 in https://github.com/nutgram/nutgram/pull/658
+
+### New Contributors
+
+* @superXdev made their first contribution in https://github.com/nutgram/nutgram/pull/653
+
+**Full Changelog**: https://github.com/nutgram/nutgram/compare/4.15.0...4.15.1
+
+## 4.15.0 - 2024-01-13
+
+### What's Changed
+
+* Add endpoint name to beforeApiRequest listener callback by @Lukasss93 in https://github.com/nutgram/nutgram/pull/644
+* Add toArray() method to BaseType object by @Lukasss93 in https://github.com/nutgram/nutgram/pull/647
+* Add language_code support for commands description by @Lukasss93 in https://github.com/nutgram/nutgram/pull/648
+* Futureproof v4 by @sergix44 in https://github.com/nutgram/nutgram/pull/645
+
+**Full Changelog**: https://github.com/nutgram/nutgram/compare/4.14.3...4.15.0
+
+## 4.14.3 - 2024-01-06
+
+### What's Changed
+
+* Refactor by @Lukasss93 in https://github.com/nutgram/nutgram/pull/642
+* Add missing "DEFAULT_ALLOWED_UPDATES" items by @Lukasss93 in https://github.com/nutgram/nutgram/pull/643
+
+**Full Changelog**: https://github.com/nutgram/nutgram/compare/4.14.2...4.14.3
+
 ## 4.14.2 - 2024-01-05
 
 ### What's Changed

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ccae0741bc1d1937d5d802bf06e200f2",
+    "content-hash": "ad075e48552c3b7019b48b0a11489637",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -333,7 +333,7 @@
         },
         {
             "name": "illuminate/macroable",
-            "version": "v10.39.0",
+            "version": "v10.43.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/macroable.git",
@@ -439,16 +439,16 @@
         },
         {
             "name": "nutgram/hydrator",
-            "version": "5.0.1",
+            "version": "6.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nutgram/hydrator.git",
-                "reference": "687a6df34e8a5d5ed0b144792697a4f9745fad21"
+                "reference": "cdd8cb922952edc8d295a754f6d70227cfbd369e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nutgram/hydrator/zipball/687a6df34e8a5d5ed0b144792697a4f9745fad21",
-                "reference": "687a6df34e8a5d5ed0b144792697a4f9745fad21",
+                "url": "https://api.github.com/repos/nutgram/hydrator/zipball/cdd8cb922952edc8d295a754f6d70227cfbd369e",
+                "reference": "cdd8cb922952edc8d295a754f6d70227cfbd369e",
                 "shasum": ""
             },
             "require": {
@@ -493,22 +493,22 @@
             ],
             "support": {
                 "issues": "https://github.com/nutgram/hydrator/issues",
-                "source": "https://github.com/nutgram/hydrator/tree/5.0.1"
+                "source": "https://github.com/nutgram/hydrator/tree/6.0.0"
             },
-            "time": "2023-12-30T18:18:29+00:00"
+            "time": "2024-01-07T22:43:31+00:00"
         },
         {
             "name": "nutgram/nutgram",
-            "version": "4.14.3",
+            "version": "4.15.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nutgram/nutgram.git",
-                "reference": "47181f4fd70859a8eec9f1d8d8866491dbf57c73"
+                "reference": "849d748eb95a16244ed96edd0f6b1b021b2a6436"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nutgram/nutgram/zipball/47181f4fd70859a8eec9f1d8d8866491dbf57c73",
-                "reference": "47181f4fd70859a8eec9f1d8d8866491dbf57c73",
+                "url": "https://api.github.com/repos/nutgram/nutgram/zipball/849d748eb95a16244ed96edd0f6b1b021b2a6436",
+                "reference": "849d748eb95a16244ed96edd0f6b1b021b2a6436",
                 "shasum": ""
             },
             "require": {
@@ -516,7 +516,7 @@
                 "guzzlehttp/guzzle": "^7.2",
                 "illuminate/macroable": "^8.0|^9.0|^10.0",
                 "laravel/serializable-closure": "^1.2",
-                "nutgram/hydrator": "^5.0.1",
+                "nutgram/hydrator": "^6.0",
                 "php": "^8.2",
                 "psr/log": "^1.0|^2.0|^3.0",
                 "psr/simple-cache": "^1.0|^2.0|^3.0",
@@ -567,7 +567,7 @@
             ],
             "support": {
                 "issues": "https://github.com/nutgram/nutgram/issues",
-                "source": "https://github.com/nutgram/nutgram/tree/4.14.3"
+                "source": "https://github.com/nutgram/nutgram/tree/4.15.1"
             },
             "funding": [
                 {
@@ -579,7 +579,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-01-06T19:29:46+00:00"
+            "time": "2024-01-31T21:13:04+00:00"
         },
         {
             "name": "psr/container",
@@ -1070,7 +1070,8 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "ext-pdo": "*"
+        "ext-pdo": "*",
+        "ext-openssl": "*"
     },
     "platform-dev": [],
     "plugin-api-version": "2.6.0"
