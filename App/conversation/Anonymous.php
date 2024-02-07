@@ -197,7 +197,7 @@ class Anonymous extends InlineMenu
             return $decision->rejected("Используйте только буквы и цифры");
         }
 
-        $strlen = strlen($nickname);
+        $strlen = mb_strlen($nickname);
         if ($strlen > 15) {
             return $decision->rejected("Никнейм должен быть не длиннее 15 символов");
         }
