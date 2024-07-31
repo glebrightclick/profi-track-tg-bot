@@ -280,7 +280,6 @@ class Anonymous extends InlineMenu
     public function showMenu(bool $reopen = false, bool $noHandlers = false, bool $noMiddlewares = false): Message|null
     {
         $this->storage->close();
-
         return parent::showMenu($reopen, $noHandlers, $noMiddlewares);
     }
 
